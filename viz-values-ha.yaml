@@ -1,0 +1,34 @@
+# Get the latest from: helm fetch --untar linkerd/linkerd-viz
+# and tweak as required.
+
+enablePodAntiAffinity: true
+
+# nodeAffinity:
+
+resources: &ha_resources
+  cpu: &ha_resources_cpu
+    limit: ""
+    request: 100m
+  memory:
+    limit: 250Mi
+    request: 50Mi
+
+
+# tap configuration
+tap:
+  replicas: 2 # Make this 3 on nodes with 3 worker nodes or more
+  resources: *ha_resources
+
+# web configuration
+dashboard:
+  resources: *ha_resources
+
+# prometheus configuration
+prometheus:
+  resources:
+    cpu:
+      limit: ""
+      request: 300m
+    memory:
+      limit: 8192Mi
+      request: 300Mi
