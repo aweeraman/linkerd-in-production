@@ -38,7 +38,7 @@ and then proceed to step 5.
 ## Step 5: Install the viz extension
 
 ```
-$ make viz-install
+$ make install-viz
 $ linkerd viz check
 ```
 
